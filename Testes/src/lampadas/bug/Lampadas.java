@@ -37,7 +37,7 @@ public class Lampadas {
 		
 		while(movimentoValido(origem, destino, tempo)){
 			ultimoTempo = tempo;
-			mapaComodos[destino] = tempo + tempoAcesa;
+			mapaComodos[destino] = tempo;
 			
 			fato = io.nextLine();
 			
