@@ -47,7 +47,7 @@ public class Lampadas {
 		}
 		
 		for(int i = 0; i < numComodos; i++){
-			if(mapaComodos[i] >= ultimoTempo)
+			if(mapaComodos[i] > ultimoTempo)
 				System.out.println("1");
 			else{
 				System.out.println("0");
