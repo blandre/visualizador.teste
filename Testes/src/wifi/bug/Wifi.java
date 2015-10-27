@@ -98,7 +98,7 @@ class PontoAcesso{
 			else{
 				for(int i = 0; i < capacidade; i++){
 					double distanciaConectado = clientes[i].distancia(this.getX(), this.getY());
-					if(distanciaCandidato < distanciaConectado){
+					if(distanciaCandidato <= distanciaConectado){
 						this.clientes[i] = cliente.clone();
 						return true;
 					}
