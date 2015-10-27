@@ -90,7 +90,7 @@ class PontoAcesso{
 	
 	public boolean conectar(Cliente cliente){
 		double distanciaCandidato = cliente.distancia(this.getX(), this.getY());
-		if(distanciaCandidato <= raio){
+		if(distanciaCandidato >= raio){
 			if(this.conectados < this.capacidade){
 				this.clientes[conectados] = cliente.clone();
 				conectados ++;
