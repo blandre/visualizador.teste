@@ -93,7 +93,6 @@ class PontoAcesso{
 		if(distanciaCandidato >= raio){
 			if(this.conectados < this.capacidade){
 				this.clientes[conectados] = cliente.clone();
-				conectados ++;
 				return true;
 			}
 			else{
