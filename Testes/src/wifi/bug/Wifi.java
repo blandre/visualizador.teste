@@ -87,12 +87,13 @@ class PontoAcesso{
 	public int getConectados(){
 		return this.conectados;
 	}
-	
+
 	public boolean conectar(Cliente cliente){
 		double distanciaCandidato = cliente.distancia(this.getX(), this.getY());
 		if(distanciaCandidato >= raio){
 			if(this.conectados < this.capacidade){
 				this.clientes[conectados] = cliente.clone();
+				conectados++;
 				return true;
 			}
 			else{
@@ -119,7 +120,7 @@ class PontoAcesso{
 				retorno += " " + this.clientes[i].getId();
 			}
 		}
-		
+
 		return retorno;
 	}
 }
@@ -129,15 +130,15 @@ public class Wifi {
 	private static int nPontosAcesso;
 	private static PontoAcesso[] pontos;
 	private static int contClientes;
-	
+
 	private static void processarCliente(String strCliente){
 		Cliente cliente = new Cliente(contClientes++, Integer.parseInt(strCliente.split(" ")[0]), Integer.parseInt(strCliente.split(" ")[1]));
-		
+
 		double menorDistancia = Integer.MAX_VALUE;
 		int melhorPonto = -1;
 		for(int i = 0; i < nPontosAcesso; i++){
 			double distanciaClientePonto = cliente.distancia(pontos[i].getX(), pontos[i].getY());
-			
+
 			if(distanciaClientePonto <= pontos[i].getRaio()){
 				if(distanciaClientePonto < menorDistancia){
 					melhorPonto = i;
@@ -157,7 +158,7 @@ public class Wifi {
 							else if(xCandidato == xMenorDistancia){
 								int yMenorDistancia = pontos[melhorPonto].getY();
 								int yCandidato = pontos[i].getY();
-								
+
 								if(yCandidato < yMenorDistancia){
 									melhorPonto = i;
 								}
@@ -167,53 +168,48 @@ public class Wifi {
 				}
 			}
 		}
-		
+
 		if(melhorPonto != -1){
-			System.out.println("Vou conectar ao ponto " + melhorPonto);
-			if(pontos[melhorPonto].conectar(cliente)){
-				System.out.println("Sucesso");
-			}
-			else{
-				System.out.println("Falhou");
-			}
+
+			pontos[melhorPonto].conectar(cliente);
+
 		}
-		else{
-			System.out.println("Não consegui me conectar");
-		}
+
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 		Scanner io = new Scanner(System.in);
-		
+
 		contClientes = 1;
 		nPontosAcesso = Integer.parseInt(io.nextLine());
 		pontos = new PontoAcesso[nPontosAcesso];
-		
+
 		for(int i = 0; i < nPontosAcesso; i++){
 			String lida = io.nextLine();
 			int x = Integer.parseInt(lida.split(" ")[0]);
 			int y = Integer.parseInt(lida.split(" ")[1]);
 			int r = Integer.parseInt(lida.split(" ")[2]);
 			int l = Integer.parseInt(lida.split(" ")[3]);
-			
+
 			pontos[i] = new PontoAcesso(i+1, x, y, r, l);
 		}
-		
+
 		String strCliente = io.nextLine();
-		
+
 		while(!strCliente.equals("-1 -1")){
 			processarCliente(strCliente);
 			strCliente = io.nextLine();
 		}
-		
+
 		for(int i = 0; i < nPontosAcesso; i++){
 			System.out.println(pontos[i].printClientes());
 		}
-		
-		
+
+
+
 		io.close();
-		
+
 	}
 
 }
