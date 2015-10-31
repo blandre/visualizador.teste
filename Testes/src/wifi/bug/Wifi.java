@@ -210,7 +210,7 @@ public class Wifi {
 		
 		Scanner io = new Scanner(System.in);
 		
-		contClientes = 1;
+		contClientes = 0;
 		nPontosAcesso = Integer.parseInt(io.nextLine());
 		pontos = new PontoAcesso[nPontosAcesso];
 		
