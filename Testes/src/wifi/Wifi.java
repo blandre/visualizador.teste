@@ -97,14 +97,30 @@ class PontoAcesso{
 				return true;
 			}
 			else{
+				int indiceSubstituido = -1;
+				int idadeSubstituido = -1;
+				double distanciaSubstiduido = Integer.MIN_VALUE;
 				for(int i = 0; i < capacidade; i++){
-					double distanciaConectado = clientes[i].distancia(this.getX(), this.getY());
-					if(distanciaCandidato < distanciaConectado){
-						this.clientes[i] = cliente.clone();
-						return true;
+					double distanciaConectado = clientes[i].distancia(this.getX(), this.getY());					
+					if(distanciaConectado > distanciaSubstiduido){
+						distanciaSubstiduido = distanciaConectado;
+						indiceSubstituido = i;
+						idadeSubstituido = clientes[i].getId();
+					}
+					else if(distanciaConectado == distanciaSubstiduido && idadeSubstituido > clientes[i].getId()){
+						distanciaSubstiduido = distanciaConectado;
+						indiceSubstituido = i;
+						idadeSubstituido = clientes[i].getId();
 					}
 				}
-				return false;
+				if(indiceSubstituido == -1){
+					return false;
+				}
+				else{
+					System.out.println("Removendo cliente " + clientes[indiceSubstituido].getId());
+					clientes[indiceSubstituido] = cliente.clone();
+					return true;
+				}
 			}
 		}
 		else{
@@ -134,21 +150,29 @@ public class Wifi {
 	private static void processarCliente(String strCliente){
 		Cliente cliente = new Cliente(contClientes++, Integer.parseInt(strCliente.split(" ")[0]), Integer.parseInt(strCliente.split(" ")[1]));
 		
+		//define a melhor distancia como maximo valor, qualquer coisa vai ser menor
 		double menorDistancia = Integer.MAX_VALUE;
+		//indice do melhot ponto
 		int melhorPonto = -1;
 		for(int i = 0; i < nPontosAcesso; i++){
 			double distanciaClientePonto = cliente.distancia(pontos[i].getX(), pontos[i].getY());
-			
+			//se ponto estiver dentro do raio
 			if(distanciaClientePonto <= pontos[i].getRaio()){
+				//pega sempre o ponto que estiver mais perto
 				if(distanciaClientePonto < menorDistancia){
 					melhorPonto = i;
 					menorDistancia = distanciaClientePonto;
 				}
+				//para distancias iguais,começa as regras de desempate
 				else if(distanciaClientePonto == menorDistancia){
+					//por garantia
 					if(melhorPonto != -1){
+						//se o candidato tiver menos conectados
 						if(pontos[i].getConectados() < pontos[melhorPonto].getConectados()){
+							//candidato ganha
 							melhorPonto = i;
 						}
+						//se candidato e melhor tiverem o memso tanto de conectados
 						else if(pontos[i].getConectados() == pontos[melhorPonto].getConectados()){
 							int xMenorDistancia = pontos[melhorPonto].getX();
 							int xCandidato = pontos[i].getX();
