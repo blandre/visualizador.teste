@@ -107,7 +107,7 @@ class PontoAcesso{
 						indiceSubstituido = i;
 						idadeSubstituido = clientes[i].getId();
 					}
-					else if(distanciaConectado == distanciaSubstiduido && idadeSubstituido > clientes[i].getId()){
+					else if(distanciaConectado == distanciaSubstiduido && idadeSubstituido < clientes[i].getId()){
 						distanciaSubstiduido = distanciaConectado;
 						indiceSubstituido = i;
 						idadeSubstituido = clientes[i].getId();
