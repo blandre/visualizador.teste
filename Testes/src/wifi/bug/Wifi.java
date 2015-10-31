@@ -157,7 +157,7 @@ public class Wifi {
 		for(int i = 0; i < nPontosAcesso; i++){
 			double distanciaClientePonto = cliente.distancia(pontos[i].getX(), pontos[i].getY());
 			//se ponto estiver dentro do raio
-			if(distanciaClientePonto <= pontos[i].getRaio()){
+			if(distanciaClientePonto < pontos[i].getRaio()){
 				//pega sempre o ponto que estiver mais perto
 				if(distanciaClientePonto < menorDistancia){
 					melhorPonto = i;
