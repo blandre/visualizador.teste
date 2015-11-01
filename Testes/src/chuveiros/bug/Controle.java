@@ -162,40 +162,6 @@ class Predio{
 
 public class Controle {
 
-	private static String[] split(String original, char c){
-		String trimmed = original;
-		while(trimmed.charAt(trimmed.length()-1) == c){
-			trimmed = trimmed.substring(0, trimmed.length()-1);
-		}
-
-		int contaOcorrencia = 0;
-		for(int i = 0; i < trimmed.length(); i++){
-			if(trimmed.charAt(i) == c){
-				contaOcorrencia++;
-			}
-		}
-		String[] retorno = new String[contaOcorrencia + 1];
-		int indiceAtual = 0;
-		int inicioSubstring = 0;
-		if(contaOcorrencia > 0){
-
-			while(contaOcorrencia > 0){
-				for(int i = inicioSubstring; i <= trimmed.length(); i++){
-					if(trimmed.charAt(i) == c){
-						retorno[indiceAtual++] = trimmed.substring(inicioSubstring, i);
-						System.out.println("guardou " + trimmed.substring(inicioSubstring, i));
-						inicioSubstring = i+1;
-						i = trimmed.length();
-						contaOcorrencia--;
-					}
-				}
-			}
-		}
-		retorno[indiceAtual] = trimmed.substring(inicioSubstring, trimmed.length());
-
-		return retorno;
-	}
-
 	public static void main(String[] args) {
 
 		Scanner io = new Scanner(System.in);		
@@ -203,7 +169,7 @@ public class Controle {
 
 		Predio p = null;
 
-		String[] informacoesPredio = split(primeira, ' ');
+		String[] informacoesPredio = primeira.split(" ");
 		if(informacoesPredio.length == 3){
 			p = new Predio(Integer.parseInt(informacoesPredio[0]), Integer.parseInt(informacoesPredio[1]), Integer.parseInt(informacoesPredio[2]));
 		}
@@ -212,7 +178,7 @@ public class Controle {
 			String apartamento = io.nextLine();
 			while(!apartamento.equals("-1 -1")){
 				p.avancarTempo();
-				String[] chuveiro = split(apartamento, ' ');
+				String[] chuveiro = apartamento.split(" ");
 				Chuveiro novo = new Chuveiro(Integer.parseInt(chuveiro[0]), Integer.parseInt(chuveiro[1]));
 				if(p.ligar(novo)){
 					System.out.println("SIM utilizando " + p.getUtilizado());
