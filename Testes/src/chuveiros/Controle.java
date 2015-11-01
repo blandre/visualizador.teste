@@ -77,7 +77,7 @@ class Predio{
 		this.tempo++;
 		
 		for(int i = 0; i < numChuveiros; i++){
-			if(this.tempo > this.tempoEntrada[i] + chuveiros[i].getTempo()){
+			if(this.tempo >= this.tempoEntrada[i] + chuveiros[i].getTempo()){
 				this.tempoEntrada[i] = Integer.MIN_VALUE;
 				this.ocupados--;
 				this.utilizado += this.chuveiros[i].getVazao();
