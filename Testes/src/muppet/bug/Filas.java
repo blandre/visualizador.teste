@@ -140,8 +140,6 @@ public class Filas {
 					int filaSecundaria = (filaPrimaria +1)%numWorkers;
 
 					if(workers[filaPrimaria].getKeyPrimeiro() == evento.getKey() && workers[filaPrimaria].getOcupados() < workers[filaPrimaria].getCapacidade()){
-						
-						System.out.println("Primaria processando igual");
 						if(workers[filaPrimaria].inserir(evento.clone())){
 							System.out.println(filaPrimaria);
 						}
@@ -151,7 +149,6 @@ public class Filas {
 
 					}
 					else if(workers[filaSecundaria].getKeyPrimeiro() == evento.getKey() && workers[filaSecundaria].getOcupados() < workers[filaSecundaria].getCapacidade()){
-						System.out.println("Secundaria processando igual");
 						if(workers[filaSecundaria].inserir(evento.clone())){
 							System.out.println(filaSecundaria);
 						}
