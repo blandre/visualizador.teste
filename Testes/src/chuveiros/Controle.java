@@ -75,15 +75,17 @@ class Predio{
 
 	public void avancarTempo(){
 		this.tempo++;
-		
+
 		for(int i = 0; i < numChuveiros; i++){
-			if(this.tempo >= this.tempoEntrada[i] + chuveiros[i].getTempo()){
-				this.tempoEntrada[i] = Integer.MIN_VALUE;
-				this.ocupados--;
-				this.utilizado += this.chuveiros[i].getVazao();
+			if(this.tempoEntrada[i] != Integer.MIN_VALUE){
+				if(this.tempo >= this.tempoEntrada[i] + chuveiros[i].getTempo()){
+					this.tempoEntrada[i] = Integer.MIN_VALUE;
+					this.ocupados--;
+					this.utilizado -= this.chuveiros[i].getVazao();
+				}
 			}
 		}
-		
+
 	}
 
 	public boolean liberarChuveiro(Chuveiro chuveiro){
@@ -209,15 +211,16 @@ public class Controle {
 		if(p != null){
 			String apartamento = io.nextLine();
 			while(!apartamento.equals("-1 -1")){
+				p.avancarTempo();
 				String[] chuveiro = split(apartamento, ' ');
 				Chuveiro novo = new Chuveiro(Integer.parseInt(chuveiro[0]), Integer.parseInt(chuveiro[1]));
 				if(p.ligar(novo)){
-					System.out.println("SIM");
+					System.out.println("SIM utilizando " + p.getUtilizado());
 				}
 				else{
 					System.out.println("NAO");
 				}
-				p.avancarTempo();
+
 				apartamento = io.nextLine();
 			}
 		}
