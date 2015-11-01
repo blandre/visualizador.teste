@@ -78,7 +78,7 @@ class Predio{
 
 		for(int i = 0; i < numChuveiros; i++){
 			if(this.tempoEntrada[i] != Integer.MIN_VALUE){
-				if(this.tempo >= this.tempoEntrada[i]){
+				if(this.tempo >= this.tempoEntrada[i] + chuveiros[i].getTempo()){
 					this.tempoEntrada[i] = Integer.MIN_VALUE;
 					this.ocupados--;
 					this.utilizado -= this.chuveiros[i].getVazao();
@@ -107,6 +107,7 @@ class Predio{
 
 		if(indiceChuveiroMaisAntigo != -1){
 			this.tempoEntrada[indiceChuveiroMaisAntigo] = Integer.MIN_VALUE;
+			this.ocupados--;
 			this.utilizado += this.chuveiros[indiceChuveiroMaisAntigo].getVazao();
 			return true;
 		}
@@ -120,6 +121,7 @@ class Predio{
 					if(tempoEntrada[i] == Integer.MIN_VALUE){
 						this.chuveiros[i] = chuveiro.clone();
 						this.tempoEntrada[i] = this.tempo;
+						ocupados++;
 						this.utilizado += chuveiro.getVazao();
 						i = numChuveiros;
 						return true;
