@@ -106,7 +106,6 @@ class Predio{
 
 		if(indiceChuveiroMaisAntigo != -1){
 			this.tempoEntrada[indiceChuveiroMaisAntigo] = Integer.MIN_VALUE;
-			this.ocupados--;
 			this.utilizado += this.chuveiros[indiceChuveiroMaisAntigo].getVazao();
 			return true;
 		}
