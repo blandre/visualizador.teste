@@ -158,7 +158,7 @@ public class Filas {
 
 					}
 					else{
-						if(workers[filaSecundaria].getOcupados() < muitoVazio){
+						if(workers[filaSecundaria].getOcupados() <= muitoVazio){
 							if(workers[filaSecundaria].inserir(evento.clone())){
 								System.out.println(filaSecundaria);
 							}
