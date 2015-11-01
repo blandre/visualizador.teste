@@ -130,7 +130,7 @@ class Predio{
 				int indiceMaisAntigoLigado = -1;
 				for(int i = 0; i < numChuveiros; i++){
 					if(this.tempo - this.tempoEntrada[i] >= this.tMinimo){
-						if(tempoEntrada[i] < tempoMaisAntigo){
+						if(tempoEntrada[i] > tempoMaisAntigo){
 							tempoMaisAntigo = tempoEntrada[i];
 							indiceMaisAntigoLigado = i;
 						}
