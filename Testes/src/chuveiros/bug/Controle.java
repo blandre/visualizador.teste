@@ -119,7 +119,6 @@ class Predio{
 					if(tempoEntrada[i] == Integer.MIN_VALUE){
 						this.chuveiros[i] = chuveiro.clone();
 						this.tempoEntrada[i] = this.tempo;
-						ocupados++;
 						this.utilizado += chuveiro.getVazao();
 						i = numChuveiros;
 						return true;
