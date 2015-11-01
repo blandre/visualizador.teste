@@ -78,7 +78,7 @@ class Fila{
 
 	public void processar(){		
 		if(this.ocupados > 0){
-			this.primeiro = (this.primeiro + 1)%this.capacidade;
+			this.primeiro = (this.primeiro++)%this.capacidade;
 			this.ocupados--;
 		}
 	}
