@@ -178,7 +178,7 @@ public class Controle {
 				String[] chuveiro = apartamento.split(" ");
 				Chuveiro novo = new Chuveiro(Integer.parseInt(chuveiro[0]), Integer.parseInt(chuveiro[1]));
 				if(p.ligar(novo)){
-					System.out.println("SIM utilizando " + p.getUtilizado());
+					System.out.println("SIM");
 				}
 				else{
 					System.out.println("NAO");
