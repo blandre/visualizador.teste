@@ -149,7 +149,7 @@ public class Filas {
 
 					}
 					else if(workers[filaSecundaria].getKeyPrimeiro() == evento.getKey() && workers[filaSecundaria].getOcupados() < workers[filaSecundaria].getCapacidade()){
-						if(workers[filaSecundaria].inserir(evento.clone())){
+						if(workers[filaPrimaria].inserir(evento.clone())){
 							System.out.println(filaSecundaria);
 						}
 						else{
